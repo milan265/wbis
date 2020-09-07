@@ -1,3 +1,4 @@
+/*cookie*/
 function setCookie(cname, cvalue, sec) {
     var d = new Date();
     d.setTime(d.getTime() + (sec*1000));
@@ -34,6 +35,8 @@ if(getCookie('cookie')==0){
 }
 
 
+/*----------------------------------------------*/
+
 function prikaziLozinku(){
     var x = document.getElementById("tbLozinka");
     if (x.type === "password") {
@@ -43,7 +46,7 @@ function prikaziLozinku(){
     }
 }
 
-
+/*----------------------------------------------*/
 function proveraPrijave(){
   var app_key = document.getElementById("app_key").value;
   var brKartice = document.getElementById("tbBrKartice").value;
@@ -73,6 +76,7 @@ function proveraPrijave(){
   } 
 }
 
+/*----------------------------------------------*/
 
 function odjaviSe(){
   setCookie("prijavljen",0,86400);
@@ -81,3 +85,43 @@ function odjaviSe(){
 
   window.location.href = "http://localhost/wbis/";
 }
+
+/*----------------------------------------------*/
+
+/*snackbar student_kontakt_obrada.php*/
+function posaljiPoruku() {
+  var app_key = document.getElementById("const").value;
+  var tbIme = document.getElementById("tbIme").value;
+  var tbPrezime = document.getElementById("tbPrezime").value;
+  var tbEmail = document.getElementById("tbEmail").value;
+  var tbNaslov = document.getElementById("tbNaslov").value;
+  var taPoruka = document.getElementById("taPoruka").value;
+
+  var params = "const="+app_key+"&tbIme="+tbIme+"&tbPrezime="+tbPrezime+"&tbEmail="+tbEmail+"&tbNaslov="+tbNaslov+"&taPoruka="+taPoruka;
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST","student_kontakt_obrada.php",true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState == 4 && xhr.status == 200) {
+      var x = document.getElementById("snackbar");
+      if(xhr.responseText==1){
+        x.innerHTML = "Poruka je poslata";
+      }else{
+        x.innerHTML = "Greška prilikom slanja poruke";
+      }
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      document.getElementById("const").value = "";
+      document.getElementById("tbIme").value = "";
+      document.getElementById("tbPrezime").value = "";
+      document.getElementById("tbEmail").value = "";
+      document.getElementById("tbNaslov").value = "";
+      document.getElementById("taPoruka").value = "";
+    }
+
+  };
+
+  xhr.send(params);
+}
+
+/*----------------------------------------------*/
