@@ -1,9 +1,10 @@
 <?php
     if (!defined('APP_KEY') or APP_KEY != '12345678') {
 	   header("Location: ./");
-    }
+	}
+	
 	include('pocetak.php');
-	include('student_header.php');
+	include('header.php');
 
 	$stranica = isset($_GET['stranica']) ? $_GET['stranica'] : '';
 	if(isset($_COOKIE['vrsta_korisnika'])){
@@ -18,21 +19,25 @@
 					 include('student_uplata_obroka.php');
 				   break;
 				case 'uplata-doma':
-				   echo "<script>document.title='Uplata doma'</script>";
-				   include('student_uplata_doma.php');
-				   break;
+					if(studentUDomu()){
+						echo "<script>document.title='Uplata doma'</script>";
+				   		include('student_uplata_doma.php');
+					}else{
+						header("Location: ./");
+					}
+				   	break;
 				case 'lista-racuna':
-				   echo "<script>document.title='Lista računa'</script>";
-				   include('student_lista_racuna.php');
-				   break;
+				   	echo "<script>document.title='Lista računa'</script>";
+				   	include('student_lista_racuna.php');
+				   	break;
 				case 'kontakt':
-				   echo "<script>document.title='Kontakt'</script>";
-				   include('student_kontakt.php');
+				   	echo "<script>document.title='Kontakt'</script>";
+				   	include('student_kontakt.php');
 					break;
 				default:
-				   echo "<script>document.title='Stranica nije pronađena'</script>";
-				   include('404.php');
-				   break;		
+				   	echo "<script>document.title='Stranica nije pronađena'</script>";
+				   	include('404.php');
+				   	break;		
 			 }
 		}else{
 			switch ($stranica){

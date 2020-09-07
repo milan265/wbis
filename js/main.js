@@ -61,7 +61,7 @@ function proveraPrijave(){
       if(xhr.readyState == 4 && xhr.status == 200) {
         if(xhr.responseText==1){
           document.getElementById("neuspesna-prijava").style.display = "none";
-          location.reload();
+          window.location.href = "http://localhost/wbis/";
         }else{
           document.getElementById("neuspesna-prijava").style.display = "block";
         }
@@ -79,5 +79,5 @@ function odjaviSe(){
   setCookie("broj_kartice","",-1000);
   setCookie("vrsta_korisnika","",-1000);
 
-  location.reload();
+  window.location.href = "http://localhost/wbis/";
 }
