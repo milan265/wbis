@@ -1,0 +1,293 @@
+body{
+	margin:0px;
+	padding:0px;
+	overflow-x: hidden;
+}
+.cistac{
+	clear:both;
+}
+
+a{
+	text-decoration:none;
+}
+ul{
+	list-style:none;
+}
+
+/*HEADER*/
+header{
+	width:100%;
+	background-color: #67ebbd ;
+}
+header #header-sadrzaj{
+	width:1300px;
+	height:100px;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+header #header-sadrzaj #logo img{
+	width:150px;
+	height:63px;
+	margin:20px 0px 16px 0px;
+	float:left;
+}
+header #header-sadrzaj #meni{
+	width:930px;
+	height:100%;
+	text-align:center;
+	font-family:verdana;
+	float:left;
+}
+
+header #header-sadrzaj #meni ul li{
+	display:inline-block;
+}
+
+header #header-sadrzaj #meni ul li a{
+	padding:8px;
+	color:white;
+	font-size:16px;
+	margin-left:20px;
+	text-align:center;
+}
+
+header #header-sadrzaj #meni ul li a:hover{
+	background-color:#ffffff;
+	border-radius:15px;
+	color:#000000;
+	transition:background-color 0.5s linear;
+}
+
+#odjavi-se{
+	background-color: #4CAF50;
+	background-color: rgba(250,20,20,0.8);;
+  	color: white;
+	padding:8px 20px;
+	font-size:16px;
+  	border: none;
+  	cursor: pointer;
+	border-radius: 5px;
+}
+
+#odjavi-se:hover{
+    background-color:red;
+	color:white;
+	transition:background-color 0.5s ease;
+	transition:color 0.5s ease;
+}
+
+#meni{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*----------------------------------------------*/
+
+/*main*/
+.main{
+	width:100%;
+	background: #ffffff;
+}
+.mainHeight{
+    min-height: 90vh;
+}
+/*----------------------------------------------*/
+
+/*footer*/
+footer{
+	width:100%;
+	height:100px;
+	background-color:#1a1e56;
+}
+
+footer #footer-sadrzaj{
+	width:1300px;
+	height:100%;
+	margin:0px auto;
+}
+footer #footer-sadrzaj #footer-tekst{
+	text-align:center;
+	font-size:12px;
+	font-family:verdana;
+	color: white;
+	margin-bottom:20px;
+	padding-top:20px;
+}
+/*----------------------------------------------*/
+
+/*scroll-to-top*/
+#scroll-to-top {
+    background-color: rgba(255,20,20,0.5);
+    display:none;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    line-height: 50px;
+    text-align: center;
+    color: #ffffff;
+    position: fixed;
+    right: 20px;
+	bottom: 50px;
+	border: 0px;
+	border-radius:3px;
+	cursor: pointer;
+	z-index: 999;
+}
+
+#scroll-to-top:hover {
+    background-color: rgba(255,20,20,0.8);
+    color:#c3c3c3;
+}
+
+/*----------------------------------------------*/
+
+
+#cookie-info{
+    width: 100%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+    color:white;
+    background-color:rgba(70,70,70,0.9);
+	font-size:22px;
+    text-align: center;
+    position: fixed;
+	bottom:0;
+	display: none;
+	z-index: 900;
+}
+#cookie-info p{
+	margin:5px;
+	font-size: 20px;
+	
+}
+#cookie-button{
+    color:white;
+	margin:0px;
+	padding: 8px 25px 8px 25px;
+	font-size:20px;
+    background-color: rgba(250,20,20,0.5);
+	border-radius:5px;
+    cursor: pointer;
+}
+#cookie-button:hover{
+    background-color:rgba(250,20,20,0.8);
+	color:rgba(255,255,255,0.7);
+	transition:background-color 0.5s ease;
+	transition:color 0.5s ease;
+}
+
+/*----------------------------------------------*/
+
+
+/*login*/
+#login{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#login>form{
+	width: max-content;
+	height: max-content;
+	padding: 50px;
+	background-color: #ffffff;
+	box-shadow: 5px 5px 5px 5px #888888;
+	display: flex;
+	flex-direction: column;
+}
+
+#login form div{
+	margin-bottom: 15px;
+}
+
+#login input[type=text], #login input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+.border-ccc{
+	border: 1px solid #ccc;
+}
+
+
+#login button{
+	background-color: #4CAF50;
+  	color: white;
+  	padding: 14px 20px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+  	width: 100%;
+}
+
+.poruka span{
+	color: red;
+	display:none;
+}
+
+.poruka-border{
+	border:2px solid red;
+	transition:0.5s;
+}
+
+
+
+  
+
+/*----------------------------------------------*/
+
+/*input number neprikazivanje spinera*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*----------------------------------------------*/
+
+/*404*/
+#div-404{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#slika-404{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+#div-404 a{
+	background-color: #4CAF50;
+	background-color: rgba(250,20,20,0.8);;
+  	color: white;
+  	padding: 14px 20px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+	width: 110px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 13px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#div-404 a:hover{
+    background-color:red;
+	color:white;
+	transition:background-color 0.5s ease;
+	transition:color 0.5s ease;
+}
+/*----------------------------------------------*/
+
+
