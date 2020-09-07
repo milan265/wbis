@@ -29,7 +29,11 @@
 				case 'lista-racuna':
 				   	echo "<script>document.title='Lista računa'</script>";
 				   	include('student_lista_racuna.php');
-				   	break;
+					break;
+				case 'promena-lozinke':
+					echo "<script>document.title='Promena lozinke'</script>";
+				   	include('promena_lozinke.php');
+					break;
 				case 'kontakt':
 				   	echo "<script>document.title='Kontakt'</script>";
 				   	include('student_kontakt.php');
@@ -42,13 +46,29 @@
 		}else{
 			switch ($stranica){
 				case '':
-				   echo "<script>document.title='Dodaj karticu'</script>";
-				   include('admin_dodaj_karticu.php');
-				   break;
+					echo "<script>document.title='Početna'</script>";
+				   	include('admin_pocetna.php');
+				   	break;
+				case 'dodaj-karticu':
+				  	echo "<script>document.title='Dodaj karticu'</script>";
+				   	include('admin_dodaj_karticu.php');
+					break;
+				case 'uplate':
+					echo "<script>document.title='Uplate'</script>";
+					include('admin_uplate.php');
+					break;
+				case 'poruke':
+					echo "<script>document.title='Poruke'</script>";
+					include('admin_poruke.php');
+					break;
+				case 'promena-lozinke':
+					echo "<script>document.title='Promena lozinke'</script>";
+	 			    include('promena_lozinke.php');
+					break;
 				default:
-				   echo "<script>document.title='Stranica nije pronađena'</script>";
-				   include('404.php');
-				   break;		
+				   	echo "<script>document.title='Stranica nije pronađena'</script>";
+				   	include('404.php');
+				   	break;		
 			 }
 		}
 	}

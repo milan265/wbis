@@ -1,6 +1,7 @@
 <?php
     //lozinka za studente: 12345abc
     //lozinka za administratora: admin123
+    
     if (!defined('APP_KEY') or APP_KEY != '12345678') {
         header("Location: ./");
     }

@@ -125,3 +125,43 @@ function posaljiPoruku() {
 }
 
 /*----------------------------------------------*/
+
+
+/*promena_lozinke */
+
+function promeniLozinku(){
+  var app_key = document.getElementById("app-key").value;
+  var tbStaraLozinka = document.getElementById('tbStaraLozinka').value;
+  var tbNovaLozinka1 = document.getElementById('tbNovaLozinka1').value;
+  var tbNovaLozinka2 = document.getElementById('tbNovaLozinka2').value;
+
+  if(tbNovaLozinka1 == tbNovaLozinka2){  
+    var params = "app_key="+app_key+"&stara_lozinka"+tbStaraLozinka+"&nova_lozinka="+tbNovaLozinka1;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST","promeni_lozinku.php",true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 && xhr.status == 200) {
+        var x = document.getElementById("snackbar");
+        if(xhr.responseText==1){
+          x.innerHTML = "Lozinka je promenjena";
+        }else{
+          x.innerHTML = "Greška prilikom promene lozinke";
+        }
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        document.getElementById("tbStaraLozinka").value = "";
+        document.getElementById("tbNovaLozinka1").value = "";
+        document.getElementById("tbNovaLozinka2").value = "";
+      }
+
+    };
+
+    xhr.send(params);
+  }else{
+    
+  }
+  
+}
+
+/*----------------------------------------------*/

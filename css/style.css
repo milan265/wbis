@@ -88,7 +88,7 @@ header #header-sadrzaj #meni ul li a:hover{
 /*main*/
 .main{
 	width:100%;
-	background: #ffffff;
+	background: #f7f7f7;
 }
 .mainHeight{
     min-height: 90vh;
@@ -430,4 +430,59 @@ input::-webkit-inner-spin-button {
 	to {bottom: 0; opacity: 0;}
   }
 
+/*----------------------------------------------*/
+
+/*student_moji_podaci*/
+#podaci{
+	padding-top: 100px;
+	padding-bottom: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+#podaci-prvi-red, #podaci-drugi-red{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: start;
+	width: 100%;	
+}
+#podaci-drugi-red{
+	margin-top:50px;
+}
+
+.podaci-klasa{
+	width: 500px;
+}
+
+
+#profilna-slika img{
+	width: 256px;
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.1);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#podaci table{
+	background-color:rgba(68, 75, 83, 0.4);
+	border-radius: 10px;
+	margin:auto;
+	padding: 10px;
+}
+
+#podaci table span{
+	color:white;
+	margin:10px;
+	padding-left:10px;
+	font-family:georgia;
+	font-size:22px;
+}
+
+#podaci table tr td{
+	padding: 10px;
+}
 /*----------------------------------------------*/

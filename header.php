@@ -22,9 +22,14 @@
 							echo "<li><a href=\"./index.php?stranica=uplata-doma\">Uplata doma</a></li>";
 						}
 						echo "<li><a href=\"./index.php?stranica=lista-racuna\"> Lista računa</a></li>";
+						echo "<li><a href=\"./index.php?stranica=promena-lozinke\"> Promena lozinke</a></li>";
 						echo "<li><a href=\"./index.php?stranica=kontakt\"> Kontakt</a></li>";
 					}else{
-						echo "<li><a href=\"./\">Dodaj karticu</a></li>";
+						echo "<li><a href=\"./\">Početna</a></li>";
+						echo "<li><a href=\"./index.php?stranica=dodaj-karticu\"> Dodaj karticu</a></li>";
+						echo "<li><a href=\"./index.php?stranica=uplate\"> Uplate</a></li>";
+						echo "<li><a href=\"./index.php?stranica=poruke\"> Poruke</a></li>";
+						echo "<li><a href=\"./index.php?stranica=promena-lozinke\"> Promena lozinke</a></li>";
 					}
 				?>
 				

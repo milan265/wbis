@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `administrator`
+--
+
+DROP TABLE IF EXISTS `administrator`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `administrator` (
+  `administrator_id` varchar(9) NOT NULL,
+  `lozinka` varchar(255) NOT NULL,
+  `ime` varchar(255) DEFAULT NULL,
+  `prezime` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`administrator_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `administrator`
+--
+
+LOCK TABLES `administrator` WRITE;
+/*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
+INSERT INTO `administrator` VALUES ('111111111','$2y$10$D5Pqe7afCgUqU3SnzG8ik.Z7jjHYaoB/OiMCHy70sHOIzPzGyQgLi','Pera','Perić');
+/*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `dom`
 --
 
@@ -90,11 +116,14 @@ CREATE TABLE `kartica` (
   `vecera` int(11) DEFAULT NULL,
   `student_id` int(11) DEFAULT NULL,
   `dom_id` int(11) DEFAULT NULL,
+  `fakultet_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`broj_kartice`),
   KEY `FK_1_idx` (`student_id`),
   KEY `FK_2_idx` (`dom_id`),
+  KEY `FK_3_idx` (`fakultet_id`),
   CONSTRAINT `FK_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_2` FOREIGN KEY (`dom_id`) REFERENCES `dom` (`dom_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_2` FOREIGN KEY (`dom_id`) REFERENCES `dom` (`dom_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_3` FOREIGN KEY (`fakultet_id`) REFERENCES `fakultet` (`fakultet_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -104,7 +133,7 @@ CREATE TABLE `kartica` (
 
 LOCK TABLES `kartica` WRITE;
 /*!40000 ALTER TABLE `kartica` DISABLE KEYS */;
-INSERT INTO `kartica` VALUES ('123456789','S 123 456 789 123 A','12345abc','2018-10-01','2020-10-01',1,0,1,2100,10,0,0,3,NULL),('128456213','S 128 210 292 118 V','12345abc','2018-10-01','2020-10-01',1,1,0,175,10,0,10,2,NULL),('141400610','S 381 500 178 318 T','12345abc','2013-10-08','2015-10-07',0,0,0,0,0,0,0,1,NULL),('987654321','S 123 456 789 789 S','12345abc','2018-10-01','2020-10-01',1,0,1,1500,0,10,0,4,108);
+INSERT INTO `kartica` VALUES ('123456789','S 123 456 789 123 A','$2y$10$7DTdypPQEAddGkc/iyjUW.XW41cNn7ct3DnemPLRTsGQrz7rjl2oe','2018-10-01','2020-10-01',1,0,1,2100,10,0,0,3,NULL,302),('128456213','S 128 210 292 118 V','$2y$10$hnD0nlbml7M.6mUeKkYK9OfOzWZbf2jR1q3FdVSM.SP/i1p8cvCIK','2018-10-01','2020-10-01',1,1,0,175,10,0,10,2,NULL,301),('141400610','S 381 500 178 318 T','$2y$10$VVnP08qLXTgw8P9qwDJVnO75GlLLzDJW/8FpSpEOQnlsJVwvr5F9G','2013-10-08','2015-10-07',0,0,0,0,0,0,0,1,NULL,315),('987654321','S 123 456 789 789 S','$2y$10$GLaaHITRW4zgpzd2SSCWJudcK03vwbS99gGAcLF6.u82dMZJ5G5cW','2018-10-01','2020-10-01',1,0,1,1500,0,10,0,4,108,302);
 /*!40000 ALTER TABLE `kartica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,14 +146,18 @@ DROP TABLE IF EXISTS `poruka`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `poruka` (
   `poruka_id` int(11) NOT NULL AUTO_INCREMENT,
-  `vreme` date DEFAULT NULL,
+  `vreme` datetime DEFAULT NULL,
   `ime` varchar(255) DEFAULT NULL,
   `prezime` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `naslov` varchar(255) DEFAULT NULL,
   `tekst` text,
-  PRIMARY KEY (`poruka_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `procitana` tinyint(1) DEFAULT NULL,
+  `broj_kartice` varchar(9) DEFAULT NULL,
+  PRIMARY KEY (`poruka_id`),
+  KEY `FK_broj_kartice_1_idx` (`broj_kartice`),
+  CONSTRAINT `FK_broj_kartice_1` FOREIGN KEY (`broj_kartice`) REFERENCES `kartica` (`broj_kartice`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,6 +166,7 @@ CREATE TABLE `poruka` (
 
 LOCK TABLES `poruka` WRITE;
 /*!40000 ALTER TABLE `poruka` DISABLE KEYS */;
+INSERT INTO `poruka` VALUES (23,'2020-09-07 17:25:01','Milan','Savic','milan.savic.16@singimail.rs','Naslov poruke','Ovo je tekst poruke.                        ',0,'123456789');
 /*!40000 ALTER TABLE `poruka` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,4 +392,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-05 15:00:22
+-- Dump completed on 2020-09-07 22:26:33
