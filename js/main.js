@@ -37,8 +37,8 @@ if(getCookie('cookie')==0){
 
 /*----------------------------------------------*/
 
-function prikaziLozinku(){
-    var x = document.getElementById("tbLozinka");
+function prikaziLozinku(id){
+    var x = document.getElementById(id);
     if (x.type === "password") {
         x.type = "text";
     } else {
@@ -89,39 +89,136 @@ function odjaviSe(){
 /*----------------------------------------------*/
 
 /*snackbar student_kontakt_obrada.php*/
+
+  var podaciOOsobi="";
+	
+	function proveri(){
+		var t=proveraTekst();
+		var p=proveraPoruka();
+		var r=proveraRegExp();
+		if( t && p && r){
+			podaciOOsobi={
+				"ime":$('#tbIme').val(),
+				"prezime":$('#tbPrezime').val(),
+				"email":$('#tbEmail').val(),
+				"naslov":$('#tbNaslov').val(),
+				"poruka":$('#taPoruka').val()	
+			};
+			return true;
+		}else{
+			return false;
+		}
+	};
+		
+	
+	function proveraTekst(){
+		var t=true;
+		$('#kontakt-forma :text').each(function(){
+			if($(this).val().length==0){
+				$(this).addClass('poruka-border');
+				$(this).next().children(':eq(1)').slideUp();
+				$(this).next().children(':first').slideDown();
+				t=false;
+			}else{
+				$(this).removeClass('poruka-border');
+				$(this).next().children(':first').slideUp();
+			}
+		});
+		return t;
+	}
+	
+	function proveraPoruka(){
+		if($('#taPoruka').val()==0){
+			$('#taPoruka').addClass('poruka-border');
+			$('#taPoruka').next().children(':first').slideDown();
+			return false;
+		}else{
+			$('#taPoruka').removeClass('poruka-border');
+			$('#taPoruka').next().children(':first').slideUp();
+			return true;
+		}
+	}
+	function proveraRegExp(){
+		var imeRegExp= new RegExp(/^[A-Z][a-z]+(\s[A-Z][a-z]+)*$/);
+		var emailRegExp= new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/);
+		var ime=$('#tbIme').val();
+		var prezime=$('#tbPrezime').val();
+		var email=$('#tbEmail').val();
+		var i=imeRegExp.test(ime);
+		var p=imeRegExp.test(prezime);
+		var e=emailRegExp.test(email);
+		if(i || ime.length==0){
+			if(i){
+				$('#tbIme').removeClass('poruka-border');
+				$('#tbIme').next().children(':eq(1)').slideUp();
+			}
+		}else{
+			$('#tbIme').addClass('poruka-border');
+			$('#tbIme').next().children(':eq(1)').slideDown();
+		}
+		if(p || prezime.length==0){
+			if(p){
+				$('#tbPrezime').removeClass('poruka-border');
+				$('#tbPrezime').next().children(':eq(1)').slideUp();
+			}
+		}else{
+			$('#tbPrezime').addClass('poruka-border');
+			$('#tbPrezime').next().children(':eq(1)').slideDown();
+		}
+		if(e || email.length==0){
+			if(e){
+				$('#tbEmail').removeClass('poruka-border');
+				$('#tbEmail').next().children(':eq(1)').slideUp();
+			}
+		}else{
+			$('#tbEmail').addClass('poruka-border');
+			$('#tbEmail').next().children(':eq(1)').slideDown();
+		}
+		if(i && p && e){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+
 function posaljiPoruku() {
-  var app_key = document.getElementById("const").value;
-  var tbIme = document.getElementById("tbIme").value;
-  var tbPrezime = document.getElementById("tbPrezime").value;
-  var tbEmail = document.getElementById("tbEmail").value;
-  var tbNaslov = document.getElementById("tbNaslov").value;
-  var taPoruka = document.getElementById("taPoruka").value;
+  if(proveri()){
+    var app_key = document.getElementById("const").value;
+    var tbIme = document.getElementById("tbIme").value;
+    var tbPrezime = document.getElementById("tbPrezime").value;
+    var tbEmail = document.getElementById("tbEmail").value;
+    var tbNaslov = document.getElementById("tbNaslov").value;
+    var taPoruka = document.getElementById("taPoruka").value;
 
-  var params = "const="+app_key+"&tbIme="+tbIme+"&tbPrezime="+tbPrezime+"&tbEmail="+tbEmail+"&tbNaslov="+tbNaslov+"&taPoruka="+taPoruka;
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST","student_kontakt_obrada.php",true);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState == 4 && xhr.status == 200) {
-      var x = document.getElementById("snackbar");
-      if(xhr.responseText==1){
-        x.innerHTML = "Poruka je poslata";
-      }else{
-        x.innerHTML = "Greška prilikom slanja poruke";
+    var params = "const="+app_key+"&tbIme="+tbIme+"&tbPrezime="+tbPrezime+"&tbEmail="+tbEmail+"&tbNaslov="+tbNaslov+"&taPoruka="+taPoruka;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST","student_kontakt_obrada.php",true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 && xhr.status == 200) {
+        var x = document.getElementById("snackbar");
+        if(xhr.responseText==1){
+          x.innerHTML = "Poruka je poslata";
+        }else{
+          x.innerHTML = "Greška prilikom slanja poruke";
+        }
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        document.getElementById("const").value = "";
+        document.getElementById("tbIme").value = "";
+        document.getElementById("tbPrezime").value = "";
+        document.getElementById("tbEmail").value = "";
+        document.getElementById("tbNaslov").value = "";
+        document.getElementById("taPoruka").value = "";
       }
-      x.className = "show";
-      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-      document.getElementById("const").value = "";
-      document.getElementById("tbIme").value = "";
-      document.getElementById("tbPrezime").value = "";
-      document.getElementById("tbEmail").value = "";
-      document.getElementById("tbNaslov").value = "";
-      document.getElementById("taPoruka").value = "";
-    }
 
-  };
+    };
 
-  xhr.send(params);
+    xhr.send(params);
+  }
+  
 }
 
 /*----------------------------------------------*/
@@ -130,36 +227,76 @@ function posaljiPoruku() {
 /*promena_lozinke */
 
 function promeniLozinku(){
-  var app_key = document.getElementById("app-key").value;
+  var app_key = document.getElementById("app-key-promena-lozinke").value;
   var tbStaraLozinka = document.getElementById('tbStaraLozinka').value;
   var tbNovaLozinka1 = document.getElementById('tbNovaLozinka1').value;
   var tbNovaLozinka2 = document.getElementById('tbNovaLozinka2').value;
 
-  if(tbNovaLozinka1 == tbNovaLozinka2){  
-    var params = "app_key="+app_key+"&stara_lozinka"+tbStaraLozinka+"&nova_lozinka="+tbNovaLozinka1;
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST","promeni_lozinku.php",true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function(){
-      if(xhr.readyState == 4 && xhr.status == 200) {
-        var x = document.getElementById("snackbar");
-        if(xhr.responseText==1){
-          x.innerHTML = "Lozinka je promenjena";
-        }else{
-          x.innerHTML = "Greška prilikom promene lozinke";
-        }
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-        document.getElementById("tbStaraLozinka").value = "";
-        document.getElementById("tbNovaLozinka1").value = "";
-        document.getElementById("tbNovaLozinka2").value = "";
-      }
-
-    };
-
-    xhr.send(params);
-  }else{
+  if(tbStaraLozinka.length>0){
+    $('#tbStaraLozinka').removeClass('poruka-border');
+    $('#tbStaraLozinka').addClass('border-ccc');
+    $('#trenutna-lozinka-poruka').children(':first').slideUp();
+    if(tbNovaLozinka1.length>0){
+      $('#tbNovaLozinka1').removeClass('poruka-border');
+      $('#tbNovaLozinka1').addClass('border-ccc');
+      $('#nova-lozinka-poruka').children(':first').slideUp();
+      if(tbNovaLozinka1 == tbNovaLozinka2){
+        $('#tbNovaLozinka1').removeClass('poruka-border');
+        $('#tbNovaLozinka1').addClass('border-ccc');
+        $('#tbNovaLozinka2').removeClass('poruka-border');
+        $('#tbNovaLozinka2').addClass('border-ccc');
+        $('#nova-lozinka2-poruka').children(':first').slideUp();
+        
+        var params = "app_key="+app_key+"&stara_lozinka="+tbStaraLozinka+"&nova_lozinka="+tbNovaLozinka1;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","promeni_lozinku.php",true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4 && xhr.status == 200) {
+            var x = document.getElementById("snackbar-promena-lozinke");
+            if(xhr.responseText==1){
+              x.innerHTML = "Lozinka je promenjena";
+            }else if(xhr.responseText==0){
+              x.innerHTML = "Greška prilikom promene lozinke";
+            }else if(xhr.responseText==-1){
+              x.innerHTML = "Trenutna lozinka nije dobra";
+            }
+            console.log(xhr.responseText);
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            document.getElementById("tbStaraLozinka").value = "";
+            document.getElementById("tbNovaLozinka1").value = "";
+            document.getElementById("tbNovaLozinka2").value = "";
+          }
     
+        };
+    
+        xhr.send(params);
+      }else{
+        $('#tbNovaLozinka1').removeClass('border-ccc');
+        $('#tbNovaLozinka1').addClass('poruka-border');
+        $('#tbNovaLozinka2').removeClass('border-ccc');
+        $('#tbNovaLozinka2').addClass('poruka-border');
+        $('#nova-lozinka2-poruka').children(':first').slideDown();
+      }
+    }else{
+      $('#tbNovaLozinka1').removeClass('border-ccc');
+      $('#tbNovaLozinka1').addClass('poruka-border');
+      $('#nova-lozinka-poruka').children(':first').slideDown();
+    }
+  }else{
+    $('#tbStaraLozinka').removeClass('border-ccc');
+    $('#tbStaraLozinka').addClass('poruka-border');
+    $('#trenutna-lozinka-poruka').children(':first').slideDown();
+    if(tbNovaLozinka1.length>0){
+      $('#tbNovaLozinka1').removeClass('poruka-border');
+      $('#tbNovaLozinka1').addClass('border-ccc');
+      $('#nova-lozinka-poruka').children(':first').slideUp();
+    }else{
+      $('#tbNovaLozinka1').removeClass('border-ccc');
+      $('#tbNovaLozinka1').addClass('poruka-border');
+      $('#nova-lozinka-poruka').children(':first').slideDown();
+    }
   }
   
 }

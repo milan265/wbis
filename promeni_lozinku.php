@@ -14,26 +14,41 @@
 		die("Neuspešna konekcija: " . $konekcija->connect_error);
     }
     $konekcija->set_charset("utf8");
-    
+
     $brKartice = $_COOKIE['broj_kartice'];
     $staraLozinka =  $_POST['stara_lozinka'];
     $novaLozinka = $_POST['nova_lozinka'];
-
-    $sql = "SELECT lozinka 
-            FROM kartica
-            WHERE broj_kartice = $brKartice";
+    
+    if($_COOKIE['vrsta_korisnika'] == 1){
+        $sql = "SELECT lozinka 
+                FROM kartica
+                WHERE broj_kartice = $brKartice";
+    }else{
+        $sql = "SELECT lozinka
+                FROM administrator
+                WHERE administrator_id = $brKartice";
+    }
+    
 
     $lozinka = "";
     $res = $konekcija->query($sql);
     while($r = $res->fetch_assoc()){
         $lozinka = $r['lozinka'];
     }
+
         
-	$staraLozinkaHash = password_hash($staraLozinka,PASSWORD_BCRYPT);
-        
-    if(password_verify($lozinka,$staraLozinkaHash)){
+    if(password_verify($staraLozinka,$lozinka)){
         $novaLozinkaHash = password_hash($novaLozinka,PASSWORD_BCRYPT);
-        $sql = "UPDATE kartica SET lozinka = \"$novaLozinkaHash\" WHERE broj_kartice = $brKartice";
+        if($_COOKIE['vrsta_korisnika']==1){
+            $sql = "UPDATE kartica 
+                    SET lozinka = \"$novaLozinkaHash\" 
+                    WHERE broj_kartice = $brKartice";
+        }else{
+            $sql = "UPDATE administrator 
+                    SET lozinka = \"$novaLozinkaHash\" 
+                    WHERE administrator_id = $brKartice";
+        }
+        
         $res = $konekcija->query($sql); 
         if($res){
             echo 1;//promenjena lozinka

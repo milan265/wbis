@@ -18,6 +18,10 @@ ul{
 header{
 	width:100%;
 	background-color: cadetblue ;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
 }
 header #header-sadrzaj{
 	width:1300px;
@@ -100,6 +104,10 @@ footer{
 	width:100%;
 	height:100px;
 	background-color:cadetblue;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
 }
 
 footer #footer-sadrzaj{
@@ -388,7 +396,7 @@ input::-webkit-inner-spin-button {
 	transition:0.5s;
 }
 
-/*snackbar*/
+/*snackbar kontakt*/
 #snackbar {
 	visibility: hidden; 
 	min-width: 250px; 
@@ -486,3 +494,96 @@ input::-webkit-inner-spin-button {
 	padding: 10px;
 }
 /*----------------------------------------------*/
+
+
+/*promena_lozinke*/
+
+#main-promena-lozinke{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 100px 0px;
+}
+
+#main-promena-lozinke>form{
+	width: max-content;
+	height: max-content;
+	padding: 50px;
+	background-color: #ffffff;
+	box-shadow: 5px 5px 5px 5px #888888;
+	display: flex;
+	flex-direction: column;
+}
+
+#main-promena-lozinke form div{
+	margin-bottom: 15px;
+}
+
+#main-promena-lozinke input[type=text], #main-promena-lozinke input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+#main-promena-lozinke button{
+	background-color: #4CAF50;
+  	color: white;
+  	padding: 14px 20px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+  	width: 100%;
+}
+
+.poruka-lozinke{
+	margin-left:1.2em;
+}
+
+/*snackbar promena lozinke*/
+#snackbar-promena-lozinke {
+	visibility: hidden; 
+	min-width: 250px; 
+	margin-left: -125px; 
+	background-color: dimgray; 
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 16px;
+	position: fixed;
+	z-index: 50;
+	left: 50%;
+	bottom: 30px;
+  }
+  
+  #snackbar-promena-lozinke.show {
+	visibility: visible;
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  @-webkit-keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+  }
+
+
+  /*----------------------------------------------*/

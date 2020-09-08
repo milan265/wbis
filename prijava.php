@@ -28,7 +28,7 @@
             <div>
                 <label for="tbLozinka"><b>Lozinka</b></label>
                 <input class="border-ccc" type="password" id="tbLozinka" name="tbLozinka">
-                <input type="checkbox" onclick="prikaziLozinku()">Prikaži lozinku
+                <input type="checkbox" onclick="prikaziLozinku('tbLozinka')">Prikaži lozinku
                 <div id="tbLozinkaPoruka" class="poruka">
                     <span>Polje mora biti popunjeno</span>
                 </div>
