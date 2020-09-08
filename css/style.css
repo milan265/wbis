@@ -252,6 +252,7 @@ footer #footer-sadrzaj #footer-tekst{
 /*----------------------------------------------*/
 
 /*input number neprikazivanje spinera*/
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -343,10 +344,6 @@ input::-webkit-inner-spin-button {
 	border-radius:15px;
 	border:0px;
 	font-family:georgia;
-	font-size:18px;
-	
-	
-  	color: white;
 	padding:8px 20px;
 	font-size:16px;
 }
@@ -397,7 +394,7 @@ input::-webkit-inner-spin-button {
 }
 
 /*snackbar kontakt*/
-#snackbar {
+#snackbar, #snackbar-promena-lozinke, #snackbar-uplata-obroka  {
 	visibility: hidden; 
 	min-width: 250px; 
 	margin-left: -125px; 
@@ -412,7 +409,7 @@ input::-webkit-inner-spin-button {
 	bottom: 30px;
   }
   
-  #snackbar.show {
+  #snackbar.show, #snackbar-promena-lozinke.show, #snackbar-uplata-obroka.show  {
 	visibility: visible;
 	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
 	animation: fadein 0.5s, fadeout 0.5s 2.5s;
@@ -543,47 +540,114 @@ input::-webkit-inner-spin-button {
 	margin-left:1.2em;
 }
 
-/*snackbar promena lozinke*/
-#snackbar-promena-lozinke {
-	visibility: hidden; 
-	min-width: 250px; 
-	margin-left: -125px; 
-	background-color: dimgray; 
-	color: #fff;
+
+/*----------------------------------------------*/
+
+
+/*uplata-obroka*/
+
+
+#uplata-sadrzaj{
+	padding: 100px 0px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#main-uplata-obroka{
+	width: 350px;
+	background-color:rgba(68, 75, 83, 0.4);
+	border-radius:30px;
+	padding: 30px 20px;
+}
+
+.uplata-flex{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+
+.uplata-flex p{
+	color:white;
+	margin:10px;
+	padding-left:10px;
+	font-family:georgia;
+	font-size:22px;
+	width: 20em;
+}
+
+#main-uplata-obroka span{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: #f7f7f7;
+	border-radius:5px;
+	font-family:georgia;
+	font-size:16px;
+	padding:20px;
+}
+
+#main-uplata-obroka button{
+	width:120px;
+	height:45px;
+	margin-right: 30px;
+	float:right;
+	background-color: #4CAF50;
+	color:white;
+	cursor:pointer;
+	border-radius:15px;
+	border:0px;
+	font-family:georgia;
+	padding:8px 20px;
+	font-size:16px;
+}
+
+#main-uplata-obroka input{
+	padding-left:20px;
+	width:50px;
+	height:50px;
+	border-radius:5px;
+	font-family:georgia;
+	font-size:16px;
 	text-align: center;
-	border-radius: 2px;
-	padding: 16px;
-	position: fixed;
-	z-index: 50;
-	left: 50%;
-	bottom: 30px;
-  }
-  
-  #snackbar-promena-lozinke.show {
-	visibility: visible;
-	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-	animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  }
-  
-  @-webkit-keyframes fadein {
-	from {bottom: 0; opacity: 0;}
-	to {bottom: 30px; opacity: 1;}
-  }
-  
-  @keyframes fadein {
-	from {bottom: 0; opacity: 0;}
-	to {bottom: 30px; opacity: 1;}
-  }
-  
-  @-webkit-keyframes fadeout {
-	from {bottom: 30px; opacity: 1;}
-	to {bottom: 0; opacity: 0;}
-  }
-  
-  @keyframes fadeout {
-	from {bottom: 30px; opacity: 1;}
-	to {bottom: 0; opacity: 0;}
-  }
+}
 
+#main-uplata-obroka button:hover{
+	background-color:red;
+	color:white;
+	transition:background-color 0.5s ease;
+	transition:color 0.5s ease;
+}
 
-  /*----------------------------------------------*/
+.strelice{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-left: 10px;
+}
+
+.strelice i{
+	cursor: pointer;
+	color: white;
+}
+
+.nije-validna{
+	width: 50%;
+	margin: 0 auto;
+	padding: 30px 0px;
+	background-color: rgba(250,20,20,0.8);
+    border-radius: 30px;
+    color:white;
+}
+.nije-validna h1{
+	text-align: center;
+}
+ 
+  
+/*----------------------------------------------*/
+

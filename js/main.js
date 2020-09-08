@@ -256,17 +256,20 @@ function promeniLozinku(){
             var x = document.getElementById("snackbar-promena-lozinke");
             if(xhr.responseText==1){
               x.innerHTML = "Lozinka je promenjena";
+              document.getElementById("tbStaraLozinka").value = "";
+              document.getElementById("tbNovaLozinka1").value = "";
+              document.getElementById("tbNovaLozinka2").value = "";
             }else if(xhr.responseText==0){
               x.innerHTML = "Greška prilikom promene lozinke";
+              document.getElementById("tbStaraLozinka").value = "";
+              document.getElementById("tbNovaLozinka1").value = "";
+              document.getElementById("tbNovaLozinka2").value = "";
             }else if(xhr.responseText==-1){
               x.innerHTML = "Trenutna lozinka nije dobra";
             }
-            console.log(xhr.responseText);
+  
             x.className = "show";
             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-            document.getElementById("tbStaraLozinka").value = "";
-            document.getElementById("tbNovaLozinka1").value = "";
-            document.getElementById("tbNovaLozinka2").value = "";
           }
     
         };
@@ -299,6 +302,127 @@ function promeniLozinku(){
     }
   }
   
+}
+
+/*----------------------------------------------*/
+
+
+/*uplata obroka*/
+function dodajObrok(id, korak, maxBrojObroka, budzet){
+  var x = document.getElementById(id);
+  var n = parseInt(x.innerText);
+  var y = document.getElementById('iznos');
+  var racun = parseInt(y.innerText);
+  var z = document.getElementById('stanje');
+  var stanje = parseInt(z.innerText);
+ 
+  n += korak;
+  if(n <= maxBrojObroka){
+    x.innerText = n;
+    if(budzet){
+      if(id=='dorucak'){
+        racun += korak * 40;
+      }else if(id=='rucak'){
+        racun += korak * 72;
+      }else if(id=="vecera"){
+        racun += korak * 59;
+      }
+    }else{
+      if(id=='dorucak'){
+        racun += korak * 95;
+      }else if(id=="rucak"){
+        racun += korak * 205;
+      }else if(id=="vecera"){
+        racun += korak * 175;
+      }
+    }
+    y.innerText = racun;
+    if(racun>stanje){
+      y.style.border = '2px solid red';
+    }else{
+      y.style.border = 'none';
+    }
+  } 
+}
+
+function smanjiObrok(id,korak, budzet){
+  var x = document.getElementById(id);
+  var n = parseInt(x.innerText);
+  var y = document.getElementById('iznos');
+  var racun = parseInt(y.innerText);
+  var z = document.getElementById('stanje');
+  var stanje = parseInt(z.innerText);
+
+  n -= korak;
+  if(n >= 0){
+    x.innerText = n;
+    if(budzet){
+      if(id=='dorucak'){
+        racun -= korak * 40;
+      }else if(id=='rucak'){
+        racun -= korak * 72;
+      }else if(id=="vecera"){
+        racun -= korak * 59;
+      }
+    }else{
+      if(id=='dorucak'){
+        racun -= korak * 95;
+      }else if(id=="rucak"){
+        racun -= korak * 205;
+      }else if(id=="vecera"){
+        racun -= korak * 175;
+      }
+    }
+    y.innerText = racun;
+    if(racun>stanje){
+      y.style.border = '2px solid red';
+    }else{
+      y.style.border = 'none';
+    }
+  } 
+}
+
+function uplatiObrok(){
+
+  var app_key = document.getElementById('app-key-uplata-obroka').value;
+  var dorucak = parseInt(document.getElementById('dorucak').innerText);
+  var rucak = parseInt(document.getElementById('rucak').innerText);
+  var vecera = parseInt(document.getElementById('vecera').innerText);
+  var stanje = parseInt(document.getElementById('stanje').innerText);
+  var racun = parseInt(document.getElementById('iznos').innerText);
+  var x = document.getElementById("snackbar-uplata-obroka");
+
+  if(racun <= stanje){
+    var params = "app_key="+app_key+"&dorucak="+dorucak+"&rucak="+rucak+"&vecera="+vecera+"&stanje="+stanje+"&racun="+racun;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST","student_uplata_obroka_obrada.php",true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.responseText);
+        if(xhr.responseText > 0){
+          x.innerHTML = "Uspešno ste izvršili kupovinu obroka";
+          document.getElementById('dorucak').innerText = "0";
+          document.getElementById('rucak').innerText = "0";
+          document.getElementById('vecera').innerText = "0";
+          document.getElementById('stanje').innerText = xhr.responseText;
+          document.getElementById('iznos').innerText = "0";
+        }else{
+          x.innerHTML = "Došlo je do greške. Pokušajte ponovo.";
+        }
+  
+        };
+    }
+    xhr.send(params);
+  }else{
+    x.innerHTML = "Na računu nemate dovoljno sredstava";
+  }
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
+   
+
 }
 
 /*----------------------------------------------*/

@@ -18,9 +18,6 @@
 					if($_COOKIE["vrsta_korisnika"]==1){
 						echo "<li><a href=\"./\"> Moji podaci</a></li>";
 						echo "<li><a href=\"./index.php?stranica=uplata-obroka\">Uplata obroka</a></li>";
-						if(studentUDomu()){
-							echo "<li><a href=\"./index.php?stranica=uplata-doma\">Uplata doma</a></li>";
-						}
 						echo "<li><a href=\"./index.php?stranica=lista-racuna\"> Lista računa</a></li>";
 						echo "<li><a href=\"./index.php?stranica=promena-lozinke\"> Promena lozinke</a></li>";
 						echo "<li><a href=\"./index.php?stranica=kontakt\"> Kontakt</a></li>";

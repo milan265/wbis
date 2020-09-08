@@ -18,14 +18,6 @@
 					 echo "<script>document.title='Uplata obroka'</script>";
 					 include('student_uplata_obroka.php');
 				   break;
-				case 'uplata-doma':
-					if(studentUDomu()){
-						echo "<script>document.title='Uplata doma'</script>";
-				   		include('student_uplata_doma.php');
-					}else{
-						header("Location: ./");
-					}
-				   	break;
 				case 'lista-racuna':
 				   	echo "<script>document.title='Lista računa'</script>";
 				   	include('student_lista_racuna.php');
