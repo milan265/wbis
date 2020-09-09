@@ -282,7 +282,7 @@ input::-webkit-inner-spin-button {
   	margin: 8px 0;
   	border: none;
   	cursor: pointer;
-	width: 110px;
+	width: 150px;
 	border-radius: 5px;
 	text-align: center;
 	font-size: 13px;
@@ -555,7 +555,7 @@ input::-webkit-inner-spin-button {
 	align-items: center;
 }
 #main-uplata-obroka{
-	width: 350px;
+	width: 450px;
 	background-color:rgba(68, 75, 83, 0.4);
 	border-radius:30px;
 	padding: 30px 20px;
@@ -651,3 +651,28 @@ input::-webkit-inner-spin-button {
   
 /*----------------------------------------------*/
 
+/*lista racuna*/
+.lista{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.tabela{
+	padding: 70px 30px;
+}
+
+.paginacija{
+	margin-bottom: 30px;
+}
+
+.paginacija li{
+	cursor: pointer;
+}
+
+.aktivna{
+	color: white;
+	background-color: #007BFF;
+}
+
+/*----------------------------------------------*/

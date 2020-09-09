@@ -7,6 +7,6 @@
 <div class="main mainHeight">
     <div id="div-404">
         <img id="slika-404" src="slike/404/404.jpg" alt="404"/>
-        <a href="./"> Početna stranica </a>
+        <a href="./"  class='btn'> Početna stranica </a>
     </div>
 </div>

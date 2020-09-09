@@ -1,0 +1,22 @@
+student nalozi:
+
+broj kartice:123456789
+lozinka:12345abc
+
+broj kartice:987654321
+lozinka:12345abc
+
+broj kartice:128456213
+lozinka:12345abc
+
+broj kartice:141400610
+lozinka:12345abc
+
+
+----------------------------------
+
+administrator nalozi:
+
+
+broj kartice:111111111
+lozinka:admin123

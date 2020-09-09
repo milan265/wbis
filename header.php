@@ -16,17 +16,17 @@
 			<ul>
 				<?php
 					if($_COOKIE["vrsta_korisnika"]==1){
-						echo "<li><a href=\"./\"> Moji podaci</a></li>";
-						echo "<li><a href=\"./index.php?stranica=uplata-obroka\">Uplata obroka</a></li>";
-						echo "<li><a href=\"./index.php?stranica=lista-racuna\"> Lista računa</a></li>";
-						echo "<li><a href=\"./index.php?stranica=promena-lozinke\"> Promena lozinke</a></li>";
-						echo "<li><a href=\"./index.php?stranica=kontakt\"> Kontakt</a></li>";
+						echo "<li><a href=\"./\" class='btn'> Moji podaci</a></li>";
+						echo "<li><a href=\"./index.php?stranica=uplata-obroka\" class='btn'>Uplata obroka</a></li>";
+						echo "<li><a href=\"./index.php?stranica=lista-racuna\" class='btn'> Lista računa</a></li>";
+						echo "<li><a href=\"./index.php?stranica=promena-lozinke\" class='btn'> Promena lozinke</a></li>";
+						echo "<li><a href=\"./index.php?stranica=kontakt\" class='btn'> Kontakt</a></li>";
 					}else{
 						echo "<li><a href=\"./\">Početna</a></li>";
-						echo "<li><a href=\"./index.php?stranica=dodaj-karticu\"> Dodaj karticu</a></li>";
-						echo "<li><a href=\"./index.php?stranica=uplate\"> Uplate</a></li>";
-						echo "<li><a href=\"./index.php?stranica=poruke\"> Poruke</a></li>";
-						echo "<li><a href=\"./index.php?stranica=promena-lozinke\"> Promena lozinke</a></li>";
+						echo "<li><a href=\"./index.php?stranica=dodaj-karticu\" class='btn'> Dodaj karticu</a></li>";
+						echo "<li><a href=\"./index.php?stranica=uplate\" class='btn'> Uplate</a></li>";
+						echo "<li><a href=\"./index.php?stranica=poruke\" class='btn'> Poruke</a></li>";
+						echo "<li><a href=\"./index.php?stranica=promena-lozinke\" class='btn'> Promena lozinke</a></li>";
 					}
 				?>
 				

@@ -391,38 +391,60 @@ function uplatiObrok(){
   var stanje = parseInt(document.getElementById('stanje').innerText);
   var racun = parseInt(document.getElementById('iznos').innerText);
   var x = document.getElementById("snackbar-uplata-obroka");
-
-  if(racun <= stanje){
-    var params = "app_key="+app_key+"&dorucak="+dorucak+"&rucak="+rucak+"&vecera="+vecera+"&stanje="+stanje+"&racun="+racun;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST","student_uplata_obroka_obrada.php",true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function(){
-      if(xhr.readyState == 4 && xhr.status == 200) {
-        console.log(xhr.responseText);
-        if(xhr.responseText > 0){
-          x.innerHTML = "Uspešno ste izvršili kupovinu obroka";
-          document.getElementById('dorucak').innerText = "0";
-          document.getElementById('rucak').innerText = "0";
-          document.getElementById('vecera').innerText = "0";
-          document.getElementById('stanje').innerText = xhr.responseText;
-          document.getElementById('iznos').innerText = "0";
-        }else{
-          x.innerHTML = "Došlo je do greške. Pokušajte ponovo.";
-        }
   
-        };
+  if(dorucak>0 || rucak>0 || vecera>0){
+    if(racun <= stanje){
+      var params = "app_key="+app_key+"&dorucak="+dorucak+"&rucak="+rucak+"&vecera="+vecera+"&stanje="+stanje+"&racun="+racun;
+  
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST","student_uplata_obroka_obrada.php",true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200) {
+          console.log(xhr.responseText);
+          if(xhr.responseText > 0){
+            x.innerHTML = "Uspešno ste izvršili kupovinu obroka";
+            document.getElementById('dorucak').innerText = "0";
+            document.getElementById('rucak').innerText = "0";
+            document.getElementById('vecera').innerText = "0";
+            document.getElementById('stanje').innerText = xhr.responseText;
+            document.getElementById('iznos').innerText = "0";
+          }else{
+            x.innerHTML = "Došlo je do greške. Pokušajte ponovo.";
+          }
+    
+          };
+      }
+      xhr.send(params);
+    }else{
+      x.innerHTML = "Na računu nemate dovoljno sredstava";
     }
-    xhr.send(params);
   }else{
-    x.innerHTML = "Na računu nemate dovoljno sredstava";
+    x.innerHTML = "Morate da izaberete količinu obroka";
   }
   x.className = "show";
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-
-   
+  
 
 }
+
+/*----------------------------------------------*/
+
+
+/*paginacija */
+function paginacijaNazad(aktivnaStranica){
+  aktivnaStranica--;
+  if(aktivnaStranica>0){
+    window.location.href = "http://localhost/wbis/index.php?stranica=lista-racuna&paginacija="+aktivnaStranica;
+  }
+}
+
+function paginacijaNapred(aktivnaStranica,ukupnoStranica){
+  aktivnaStranica++;
+  if(aktivnaStranica<=ukupnoStranica){
+    window.location.href = "http://localhost/wbis/index.php?stranica=lista-racuna&paginacija="+aktivnaStranica;
+  }
+}
+
 
 /*----------------------------------------------*/
