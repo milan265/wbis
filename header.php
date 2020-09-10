@@ -2,9 +2,10 @@
     if (!defined('APP_KEY') or APP_KEY != '12345678') {
         header("Location: ./");
 	 }
-	 include("student_service.php");
+	include("student_service.php");
 	
-
+	
+	$neprocitanePoruke = $_COOKIE['neprocitane-poruke']??"";
 ?>
 
 <header>
@@ -22,10 +23,10 @@
 						echo "<li><a href=\"./index.php?stranica=promena-lozinke\" class='btn'> Promena lozinke</a></li>";
 						echo "<li><a href=\"./index.php?stranica=kontakt\" class='btn'> Kontakt</a></li>";
 					}else{
-						echo "<li><a href=\"./\">Početna</a></li>";
+						echo "<li><a href=\"./\" class='btn'>Početna</a></li>";
 						echo "<li><a href=\"./index.php?stranica=dodaj-karticu\" class='btn'> Dodaj karticu</a></li>";
 						echo "<li><a href=\"./index.php?stranica=uplate\" class='btn'> Uplate</a></li>";
-						echo "<li><a href=\"./index.php?stranica=poruke\" class='btn'> Poruke</a></li>";
+						echo "<li><a href=\"./index.php?stranica=poruke\" class='btn'> Poruke <span class='badge badge-pill badge-light'>$neprocitanePoruke</span></a></li>";
 						echo "<li><a href=\"./index.php?stranica=promena-lozinke\" class='btn'> Promena lozinke</a></li>";
 					}
 				?>

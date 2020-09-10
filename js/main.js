@@ -47,6 +47,17 @@ function prikaziLozinku(id){
 }
 
 /*----------------------------------------------*/
+
+var input = document.getElementById("login");
+if(input){
+  input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {//kod za enter je 13
+      event.preventDefault();
+      document.getElementById("btnPrijaviSe").click();
+    }
+  });
+}
+
 function proveraPrijave(){
   var app_key = document.getElementById("app_key").value;
   var brKartice = document.getElementById("tbBrKartice").value;
@@ -432,19 +443,43 @@ function uplatiObrok(){
 
 
 /*paginacija */
-function paginacijaNazad(aktivnaStranica){
+function paginacijaNazad(aktivnaStranica,stranica){
   aktivnaStranica--;
   if(aktivnaStranica>0){
-    window.location.href = "http://localhost/wbis/index.php?stranica=lista-racuna&paginacija="+aktivnaStranica;
+    window.location.href = "http://localhost/wbis/index.php?stranica="+stranica+"&paginacija="+aktivnaStranica;
   }
 }
 
-function paginacijaNapred(aktivnaStranica,ukupnoStranica){
+function paginacijaNapred(aktivnaStranica,ukupnoStranica,stranica){
   aktivnaStranica++;
   if(aktivnaStranica<=ukupnoStranica){
-    window.location.href = "http://localhost/wbis/index.php?stranica=lista-racuna&paginacija="+aktivnaStranica;
+    window.location.href = "http://localhost/wbis/index.php?stranica="+stranica+"&paginacija="+aktivnaStranica;
   }
+}
+
+
+
+/*----------------------------------------------*/
+
+
+/*admin poruke */
+
+function procitajPoruku(appKey, porukaId, id){
+  var params = "app_key="+appKey+"&poruka_id="+porukaId;
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST","admin_procitaj_poruku.php",true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState == 4 && xhr.status == 200) {
+      if(xhr.responseText==1){
+        document.getElementById(id).classList.remove('poruke-b');
+      }
+    }
+  };
+  xhr.send(params);  
 }
 
 
 /*----------------------------------------------*/
+
+

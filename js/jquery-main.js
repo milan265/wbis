@@ -24,7 +24,7 @@ $(document).ready(function(){
         if(br && loz){
             return true;
         }else{
-            return false;
+			return false;
         }  
 	});
     
@@ -41,6 +41,7 @@ $(document).ready(function(){
 			$('#tbBrKartice').removeClass('border-ccc');
             $('#tbBrKartice').addClass('poruka-border');
 			$('#tbBrKarticePoruka').children(':first').slideDown();
+			$('#neuspesna-prijava').css('display','none');
             return false;
         }
 	}
@@ -56,6 +57,7 @@ $(document).ready(function(){
 			$('#tbLozinka').removeClass('border-ccc');
             $('#tbLozinka').addClass('poruka-border');
 			$('#tbLozinkaPoruka').children(':first').slideDown();
+			$('#neuspesna-prijava').css('display','none');
 			return false;
 		}
 	}
@@ -68,6 +70,13 @@ $(document).ready(function(){
         "paging":   false,
         "info":     false
     } );
+
+	$('#lista-uplata').DataTable({
+        "paging":   false,
+        "info":     false
+    } );
+	$('.dataTables_length').addClass('bs-select');
+	
 	//-----------------------------------------------------------	
 		
 });

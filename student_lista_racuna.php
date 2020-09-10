@@ -27,13 +27,13 @@
 
 
 <div class='main mainHeight'>
-    <div class="lista">
+    <div class="flex-class">
         <div class='container tabela'>
             <table id="lista-racuna" class='table table-striped'>
                 <thead>
                     <tr>
                         <th>Broj transakcije</th>
-                        <th>Vreme</th>
+                        <th>Datum i vreme</th>
                         <th>Doručak</th>
                         <th>Ručak</th>
                         <th>Večera</th>
@@ -65,7 +65,7 @@
         <nav aria-label="Navigacija" class='paginacija'>
             <ul class="pagination justify-content-center" style="margin:20px 0">
                 <li class="page-item">
-                <a class="page-link" aria-label="Previous" onclick="paginacijaNazad(<?php echo $stranica;?>)">
+                <a class="page-link" aria-label="Previous" onclick="paginacijaNazad(<?php echo $stranica;?>,'lista-racuna')">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
@@ -78,16 +78,17 @@
                         $pocetakPaginacije = $ukupnoStranica-2;
                     }
                     for($i=$pocetakPaginacije; $i<$pocetakPaginacije+$brStraniceZaPrikazivanje; $i++){
-                        echo "<li class='page-item'><a class='page-link ";
+                        echo "<li class='page-item ";
                         if($stranica == $i){
-                            echo "aktivna";
+                            echo "active";
                         }
+                        echo "'><a class='page-link ";
                         echo "' id='broj-$i' href='http://localhost/wbis/index.php?stranica=lista-racuna&paginacija=$i'>$i</a><li>";
                     }
                 ?>
 
                 <li class="page-item">
-                <a class="page-link" aria-label="Next" onclick="paginacijaNapred(<?php echo $stranica;?>,<?php echo $ukupnoStranica;?>)">
+                <a class="page-link" aria-label="Next" onclick="paginacijaNapred(<?php echo $stranica;?>,<?php echo $ukupnoStranica;?>,'lista-racuna')">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>

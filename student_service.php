@@ -110,7 +110,9 @@
 
         $kartica = [];
 
-        $sql = "SELECT * FROM kartica WHERE broj_kartice = $brKartice";
+        $sql = "SELECT * 
+                FROM kartica 
+                WHERE broj_kartice = $brKartice";
         $res = $konekcija->query($sql); 
         while($r = $res->fetch_assoc()){
             $kartica = $r;
@@ -135,7 +137,9 @@
 
         $transakcije = [];
 
-        $sql = "SELECT * FROM transakcija WHERE broj_kartice = $brKartice";
+        $sql = "SELECT * 
+                FROM transakcija 
+                WHERE broj_kartice = $brKartice";
         $res = $konekcija->query($sql); 
         while($r = $res->fetch_assoc()){
             array_push($transakcije,$r);
@@ -144,5 +148,51 @@
         $konekcija->close();
 
         return $transakcije;
+    }
+
+    function getUplate(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $transakcije = [];
+
+        $sql = "SELECT * 
+                FROM transakcija_uplata";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            array_push($transakcije,$r);
+        }
+
+        $konekcija->close();
+
+        return $transakcije;
+    }
+
+    function getPoruke(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $poruke = [];
+
+        $sql = "SELECT * 
+                FROM poruka";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            array_push($poruke,$r);
+        }
+
+        $konekcija->close();
+
+        return $poruke;
     }
 ?>

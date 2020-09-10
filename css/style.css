@@ -14,6 +14,13 @@ ul{
 	list-style:none;
 }
 
+.flex-class{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 /*HEADER*/
 header{
 	width:100%;
@@ -652,12 +659,6 @@ input::-webkit-inner-spin-button {
 /*----------------------------------------------*/
 
 /*lista racuna*/
-.lista{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
 .tabela{
 	padding: 70px 30px;
 }
@@ -673,6 +674,39 @@ input::-webkit-inner-spin-button {
 .aktivna{
 	color: white;
 	background-color: #007BFF;
+}
+
+/*----------------------------------------------*/
+
+
+
+/*admin poruke*/
+#poruke-sadrzaj{
+	padding-top: 100px;
+	padding-bottom: 100px;
+	width: 75%;
+	margin: 0px auto;
+}
+
+.panel-heading{
+	cursor: pointer;
+}
+
+.panel-heading h4{
+	padding:8px;
+	font-size:16px;
+	margin-left:5px;
+}
+
+.panel-body table tr td{
+	padding: 0px 13px;
+}
+.panel-body .tekst-poruke{
+	margin:20px 13px;
+}
+
+.poruke-b{
+	font-weight: bold;
 }
 
 /*----------------------------------------------*/
