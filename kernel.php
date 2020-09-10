@@ -41,9 +41,9 @@
 					echo "<script>document.title='Početna'</script>";
 				   	include('admin_pocetna.php');
 				   	break;
-				case 'dodaj-karticu':
-				  	echo "<script>document.title='Dodaj karticu'</script>";
-				   	include('admin_dodaj_karticu.php');
+				case 'kreiraj-karticu':
+				  	echo "<script>document.title='Kreiraj karticu'</script>";
+				   	include('admin_kreiraj_karticu.php');
 					break;
 				case 'uplate':
 					echo "<script>document.title='Uplate'</script>";

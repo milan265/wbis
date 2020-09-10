@@ -37,7 +37,7 @@
             </div>
 
             <div>
-                <button id="btnPromeniLozinku" name="btnPromeniLozinku" type="button" onclick="promeniLozinku()">Promeni lozinku</button>
+                <button id="btnPromeniLozinku" class="dugme" name="btnPromeniLozinku" type="button" onclick="promeniLozinku()">Promeni lozinku</button>
             </div>
         </form>
     </div>

@@ -195,4 +195,52 @@
 
         return $poruke;
     }
+
+    function getFakulteti(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $fakulteti = [];
+
+        $sql = "SELECT naziv,fakultet_id 
+                FROM zgrada
+                WHERE fakultet_id>0";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            array_push($fakulteti,$r);
+        }
+
+        $konekcija->close();
+
+        return $fakulteti;
+    }
+
+    function getDomovi(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $domovi = [];
+    
+        $sql = "SELECT naziv,dom_id 
+                FROM zgrada
+                WHERE dom_id>0";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            array_push($domovi,$r);
+        }
+
+        $konekcija->close();
+
+        return $domovi;
+    }
 ?>

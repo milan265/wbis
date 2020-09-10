@@ -483,3 +483,55 @@ function procitajPoruku(appKey, porukaId, id){
 /*----------------------------------------------*/
 
 
+/*kreiraj karticu */
+
+function kreirajKarticu(){
+  var appKey = document.getElementById('kk-app-key').value;
+  var ime = document.getElementById('kkIme').value;
+  var prezime = document.getElementById('kkPrezime').value;
+  var pol = "";
+  if(document.getElementById('kkMuski').checked){
+    pol = "Muški";
+  }else if(document.getElementById('kkZenski').checked){
+    pol = "Ženski";
+  }
+  var beogradska = -1;
+  if(document.getElementById('kkBeogradskaDa').checked){
+    beogradska = 1;
+  }else if(document.getElementById('kkBeogradskaNe').checked){
+    beogradska = 0;
+  }
+  var budzetska = -1;
+  if(document.getElementById('kkBudzetskaDa').checked){
+    budzetska = 1;
+  }else if(document.getElementById('kkBudzetskaNe').checked){
+    budzetska = 0;
+  }
+  
+  var datumRodjenja = document.getElementById('kkDatum').value;
+  var fakultet = document.getElementById('fakultet').value;
+  var dom = document.getElementById('dom').value;
+  if(ime!="" && prezime!="" && pol!="" && beogradska!=-1 && budzetska!=-1 && datumRodjenja!=""){
+    document.getElementById("kreiraj-karticu-poruka").style.display = "none";
+    
+    var params = "app_key="+appKey+"&ime="+ime+"&prezime="+prezime+"&pol="+pol+"&datum="+datumRodjenja+"&beogradska="+beogradska+"&budzetska="+budzetska+"&fakultet="+fakultet+"&dom="+dom;
+    console.log(params);
+    /*var xhr = new XMLHttpRequest();
+    xhr.open("POST","admin_kreiraj_karticu_obrada.php",true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 && xhr.status == 200) {
+        if(xhr.responseText==1){
+          
+        }
+      }
+    };
+    xhr.send(params);  
+    */
+  }else{
+    document.getElementById("kreiraj-karticu-poruka").style.display = "block";
+  }
+  
+}
+
+/*----------------------------------------------*/

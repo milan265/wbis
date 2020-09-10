@@ -35,7 +35,7 @@
             </div>
 
             <div>
-                <button id="btnPrijaviSe" name="btnPrijaviSe" type="button" onclick="proveraPrijave()">Prijavi se</button>
+                <button id="btnPrijaviSe" class="dugme" name="btnPrijaviSe" type="button" onclick="proveraPrijave()">Prijavi se</button>
             </div>
             <div class="poruka">
                 <span id="neuspesna-prijava">Korisnik sa unetim podacima ne postoji</span>
