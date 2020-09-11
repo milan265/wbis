@@ -485,7 +485,10 @@ function procitajPoruku(appKey, porukaId, id){
 
 /*kreiraj karticu */
 
-document.getElementById("kkSlika").addEventListener("change", readFile);
+var kk = document.getElementById("kreiraj-karticu");
+if(kk){
+  document.getElementById("kkSlika").addEventListener("change", readFile);
+}
 
 function kreirajKarticu(){
   var appKey = document.getElementById('kk-app-key').value;
@@ -510,28 +513,36 @@ function kreirajKarticu(){
     budzetska = 0;
   }
 
-  var slika = document.getElementById('b64').innerHTML;
+  var indeks = document.getElementById('kkIndeks').value;
 
+  var slika = document.getElementById('b64').innerHTML;
+  
   var datumRodjenja = document.getElementById('kkDatum').value;
   var fakultet = document.getElementById('fakultet').value;
   var dom = document.getElementById('dom').value;
-  if(ime!="" && prezime!="" && pol!="" && beogradska!=-1 && budzetska!=-1 && datumRodjenja!="" && slika!=""){
+  var lozinka = getNovaLozinka();
+  if(ime!="" && prezime!="" && pol!="" && beogradska!=-1 && budzetska!=-1 && datumRodjenja!="" && slika!="" && indeks!="" && fakultet!=0){
     document.getElementById("kreiraj-karticu-poruka").style.display = "none";
     
     var params = "app_key="+appKey+"&ime="+ime+"&prezime="+prezime+"&pol="+pol+"&datum="+datumRodjenja+
-                  "&beogradska="+beogradska+"&budzetska="+budzetska+"&fakultet="+fakultet+"&dom="+dom+"&slika="+slika;
-    /*var xhr = new XMLHttpRequest();
+                  "&beogradska="+beogradska+"&budzetska="+budzetska+"&fakultet="+fakultet+"&dom="+dom+
+                  "&slika="+slika+"&indeks="+indeks+"&lozinka="+lozinka;
+    var xhr = new XMLHttpRequest();
     xhr.open("POST","admin_kreiraj_karticu_obrada.php",true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4 && xhr.status == 200) {
-        if(xhr.responseText==1){
-          
+        if(xhr.responseText!=0){
+          console.log(xhr.responseText);
+          console.log(lozinka);
+        }else{
+          console.log("greska");
+          console.log(xhr.responseText);
         }
       }
     };
     xhr.send(params);  
-    */
+    
   }else{
     document.getElementById("kreiraj-karticu-poruka").style.display = "block";
   }
@@ -540,15 +551,26 @@ function kreirajKarticu(){
 
 function readFile() {
   if (this.files && this.files[0]) {
-    
     var FR= new FileReader();
-    
     FR.addEventListener("load", function(e) {
       document.getElementById("b64").innerHTML = e.target.result;
+      document.getElementById('btnSlika').style.backgroundColor="seagreen";
+      document.getElementById('btnSlika').innerText = "Slika izabrana";
     }); 
     
     FR.readAsDataURL( this.files[0] );
   }
 }
 
+function getNovaLozinka(){
+  var duzina = 6;
+  var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  var lozinka = "";
+  var n = charset.length;
+  for (var i=0; i<duzina; i++) {
+    lozinka += charset.charAt(Math.round(Math.random() * n));
+  }
+  return lozinka;
+}
 /*----------------------------------------------*/
+

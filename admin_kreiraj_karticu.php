@@ -5,6 +5,7 @@
 
     $fakulteti = getFakulteti();
     $domovi = getDomovi();
+    
 ?>
 
 <div class="main mainHeight">
@@ -75,6 +76,11 @@
                         }
                     ?>      
                 </select>
+            </div>
+
+            <div>
+                <label for="kkIndeks"><b>Broj indeksa</b></label>
+                <input class="border-ccc" type="text" id="kkIndeks" name="kkIndeks">
             </div>
             
             <div>

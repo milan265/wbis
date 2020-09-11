@@ -763,7 +763,7 @@ input::-webkit-calendar-picker-indicator:hover, #kreiraj-karticu select:hover, #
 }
 
 #btnSlika{
-	background-color: cadetblue;
+	background-color:red;
 	width: 50%;
   	color: white;
   	padding: 14px 20px;
@@ -775,4 +775,8 @@ input::-webkit-calendar-picker-indicator:hover, #kreiraj-karticu select:hover, #
 #b64{
 	display:none;
 }
+/*----------------------------------------------*/
+
+/*admin pocetna*/
+
 /*----------------------------------------------*/

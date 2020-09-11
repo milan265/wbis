@@ -123,14 +123,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <span>ISIC broj</span>
-                        </td>
-                        <td>
-                            <span><?php print_r($kartica['isic_broj']); ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <span>Datum izdavanja</span>
                         </td>
                         <td>
