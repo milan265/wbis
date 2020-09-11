@@ -736,7 +736,7 @@ input::-webkit-inner-spin-button {
 	box-sizing: border-box;
 }
 
-input::-webkit-calendar-picker-indicator:hover, #kreiraj-karticu select:hover{
+input::-webkit-calendar-picker-indicator:hover, #kreiraj-karticu select:hover, #kreiraj-karticu input[type=radio]:hover, .radiobtn label:hover{
 	cursor: pointer;
 }
 
@@ -749,5 +749,30 @@ input::-webkit-calendar-picker-indicator:hover, #kreiraj-karticu select:hover{
 
 #kreiraj-karticu .poruka span{
 	text-align: center;
+}
+
+#kk-div-slika{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#kkSlika{
+	display: none;
+}
+
+#btnSlika{
+	background-color: cadetblue;
+	width: 50%;
+  	color: white;
+  	padding: 14px 20px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+}
+
+#b64{
+	display:none;
 }
 /*----------------------------------------------*/

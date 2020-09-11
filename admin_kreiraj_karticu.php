@@ -14,6 +14,7 @@
                 $const = APP_KEY;
                 echo "<input type='hidden' id='kk-app-key' name='kk-app-key' value=\"$const\"/>";
             ?>
+
             <div>
                 <label for="kkIme"><b>Ime</b></label>
                 <input class="border-ccc" type="text" id="kkIme" name="kkIme">
@@ -30,7 +31,7 @@
 
             <div class="kkFlex">
                 <label><b>Pol</b></label>
-                <span>
+                <span class="radiobtn">
                     <label for="kkMuski">Muški</label>
                     <input class="border-ccc" type="radio" id="kkMuski" name="pol" value="muski">
                     <label for="kkZenski">Ženski</label>
@@ -38,9 +39,15 @@
                 </span>
             </div>
 
+            <div id="kk-div-slika">
+                <input type="file" id="kkSlika" name="kkSlika" accept="image/*">
+                <p id="b64"></p>
+                <button type="button" id="btnSlika" name="btnSlika" onclick="document.getElementById('kkSlika').click()">Izaberi sliku</button>
+            </div>
+
             <div class="kkFlex">
                 <label><b>Beogradska</b></label>
-                <span>
+                <span class="radiobtn">
                     <label for="kkBeogradskaDa">Da</label>
                     <input class="border-ccc" type="radio" id="kkBeogradskaDa" name="beogradska" value="da">
                     <label for="kkBeogradskaNe">Ne</label>
@@ -50,7 +57,7 @@
 
             <div class="kkFlex">
                 <label><b>Budžetska</b></label>
-                <span>
+                <span class="radiobtn">
                     <label for="kkBudzetskaDa">Da</label>
                     <input class="border-ccc" type="radio" id="kkBudzetskaDa" name="budzetska" value="da">
                     <label for="kkBudzetskaNe">Ne</label>

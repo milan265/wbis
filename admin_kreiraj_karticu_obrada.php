@@ -10,7 +10,8 @@
 		!isset($_POST['beogradska'])||
 		!isset($_POST['budzetska'])||
 		!isset($_POST['fakultet'])||
-		!isset($_POST['dom'])){
+		!isset($_POST['dom'])||
+		!isset($_POST['slika'])){
 			echo "Greska";
 			exit();
 		}
@@ -22,6 +23,7 @@
     $budzetska = $_POST['budzetska'];
 	$fakultet = $_POST['fakultet'];
     $dom = $_POST['dom'];
+    $slika = $_POST['slika'];
     $trenutnoVreme = date('Y-m-d H:i:s', time());
 		
     $server = 'localhost';

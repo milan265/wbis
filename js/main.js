@@ -485,6 +485,8 @@ function procitajPoruku(appKey, porukaId, id){
 
 /*kreiraj karticu */
 
+document.getElementById("kkSlika").addEventListener("change", readFile);
+
 function kreirajKarticu(){
   var appKey = document.getElementById('kk-app-key').value;
   var ime = document.getElementById('kkIme').value;
@@ -507,15 +509,17 @@ function kreirajKarticu(){
   }else if(document.getElementById('kkBudzetskaNe').checked){
     budzetska = 0;
   }
-  
+
+  var slika = document.getElementById('b64').innerHTML;
+
   var datumRodjenja = document.getElementById('kkDatum').value;
   var fakultet = document.getElementById('fakultet').value;
   var dom = document.getElementById('dom').value;
-  if(ime!="" && prezime!="" && pol!="" && beogradska!=-1 && budzetska!=-1 && datumRodjenja!=""){
+  if(ime!="" && prezime!="" && pol!="" && beogradska!=-1 && budzetska!=-1 && datumRodjenja!="" && slika!=""){
     document.getElementById("kreiraj-karticu-poruka").style.display = "none";
     
-    var params = "app_key="+appKey+"&ime="+ime+"&prezime="+prezime+"&pol="+pol+"&datum="+datumRodjenja+"&beogradska="+beogradska+"&budzetska="+budzetska+"&fakultet="+fakultet+"&dom="+dom;
-    console.log(params);
+    var params = "app_key="+appKey+"&ime="+ime+"&prezime="+prezime+"&pol="+pol+"&datum="+datumRodjenja+
+                  "&beogradska="+beogradska+"&budzetska="+budzetska+"&fakultet="+fakultet+"&dom="+dom+"&slika="+slika;
     /*var xhr = new XMLHttpRequest();
     xhr.open("POST","admin_kreiraj_karticu_obrada.php",true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -532,6 +536,19 @@ function kreirajKarticu(){
     document.getElementById("kreiraj-karticu-poruka").style.display = "block";
   }
   
+}
+
+function readFile() {
+  if (this.files && this.files[0]) {
+    
+    var FR= new FileReader();
+    
+    FR.addEventListener("load", function(e) {
+      document.getElementById("b64").innerHTML = e.target.result;
+    }); 
+    
+    FR.readAsDataURL( this.files[0] );
+  }
 }
 
 /*----------------------------------------------*/
