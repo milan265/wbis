@@ -38,12 +38,15 @@
             <p>Suma transakcija: <?php echo $sumaTransakcija?>RSD</p>
         </div>
 
-        <div id="bg-bar-chart">
+        <div id="bar-chart">
+            <div id="bg-bar-chart">
+            </div>
 
+            <div id="budzet-bar-chart">
+            </div>
         </div>
-
-        <div id="budzet-bar-chart">
-
-        </div>
+        
+        
+    
     </div>
 </div>

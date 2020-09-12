@@ -585,25 +585,27 @@ if(adminPocetna){
   var brNebg = document.getElementById('brNeBg').innerText;
   var brBudzet = document.getElementById('brBudzet').innerText;
   var brNeBudzet = document.getElementById('brNeBudzet').innerText;
-  
-  new Morris.bar({
-    element : 'bg-bar-chart',
+
+  new Morris.Bar({
+    element: 'bg-bar-chart',
     data: [
-      {bg:'Beogradska', broj: brBg},
-      {bg:'Ne beogradska', broj: brNebg}
+        { bg: 'Beogradska', vrednost: brBg },
+        { bg: 'Ne beogradska', vrednost: brNebg }
     ],
     xkey: 'bg',
-    ykeys: ['broj'] 
+    ykeys: ['vrednost'],
+    labels: ['Ukupno']
   });
 
-  new Morris.bar({
+  new Morris.Bar({
     element : 'budzet-bar-chart',
     data: [
-      {budzet:'Budžetska', broj: brBudzet},
-      {nebudzet:'Ne budžetska', broj: brNeBudzet}
+      {budzet:'Budžetska', vrednost: brBudzet},
+      {budzet:'Ne budžetska', vrednost: brNeBudzet}
     ],
     xkey: 'budzet',
-    ykeys: ['broj'] 
+    ykeys: ['vrednost'],
+    labels: ['Ukupno']
   });
 } 
 

@@ -811,4 +811,16 @@ input::-webkit-calendar-picker-indicator:hover, #kreiraj-karticu select:hover, #
 	font-size:22px;
 }
 
+#bar-chart{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+#bg-bar-chart, #budzet-bar-chart{
+	width: 350px;
+	margin:0px 20px;
+}
+
+
 /*----------------------------------------------*/
