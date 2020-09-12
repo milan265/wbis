@@ -244,4 +244,168 @@
         return $domovi;
     }
 
+    function getBrojValidnih(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $validni = 0;
+    
+        $sql = "SELECT count(*) AS validni 
+                FROM kartica
+                WHERE validna=1";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            $validni = $r['validni'];
+        }
+
+        $konekcija->close();
+
+        return $validni;
+    }
+
+    function getBrojBeogradskih(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $bg = 0;
+    
+        $sql = "SELECT count(*) AS bg 
+                FROM kartica
+                WHERE beogradska=1 AND validna=1";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            $bg = $r['bg'];
+        }
+
+        $konekcija->close();
+
+        return $bg;
+    }
+
+    function getBrojBudzetskih(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $budzet = 0;
+    
+        $sql = "SELECT count(*) AS budzet 
+                FROM kartica
+                WHERE budzet=1 AND validna=1";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            $budzet = $r['budzet'];
+        }
+
+        $konekcija->close();
+
+        return $budzet;
+    }
+
+    function getBrojUplata(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $uplate = 0;
+    
+        $sql = "SELECT count(*) AS uplata 
+                FROM transakcija_uplata";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            $uplate = $r['uplata'];
+        }
+
+        $konekcija->close();
+
+        return $uplate;
+    }
+
+    function getSumaUplata(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $iznos = 0;
+    
+        $sql = "SELECT SUM(iznos) AS iznos 
+                FROM transakcija_uplata";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            $iznos = $r['iznos'];
+        }
+
+        $konekcija->close();
+
+        return $iznos;
+    }
+
+    function getBrojTransakcija(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $uplate = 0;
+    
+        $sql = "SELECT count(*) AS uplata 
+                FROM transakcija";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            $uplate = $r['uplata'];
+        }
+
+        $konekcija->close();
+
+        return $uplate;
+    }
+
+    function getSumaTransakcija(){
+        global $server, $username, $password, $baza;
+    
+        $konekcija = new mysqli($server, $username, $password, $baza);
+		if($konekcija->connect_error){
+			die("Neuspešna konekcija: " . $konekcija->connect_error);
+        }
+        $konekcija->set_charset("utf8");
+
+        $iznos = 0;
+    
+        $sql = "SELECT SUM(iznos) AS iznos 
+                FROM transakcija";
+        $res = $konekcija->query($sql); 
+        while($r = $res->fetch_assoc()){
+            $iznos = $r['iznos'];
+        }
+
+        $konekcija->close();
+
+        return $iznos;
+    }
+
 ?>

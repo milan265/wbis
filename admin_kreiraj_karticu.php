@@ -99,6 +99,11 @@
                 <button id="btnKreirajKarticu" class="dugme" name="btnKreirajKarticu" type="button" onclick="kreirajKarticu()">Kreiraj karticu</button>
             </div>
 
+            <div id="broj-kartice-lozinka">
+                <p id="broj-kartice"></p>
+                <p id="lozinka"></p>
+            </div>
+
             <div class="poruka">
                 <span id="kreiraj-karticu-poruka">Sva polja moraju biti popunjena</span>
             </div>

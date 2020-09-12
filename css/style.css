@@ -775,8 +775,40 @@ input::-webkit-calendar-picker-indicator:hover, #kreiraj-karticu select:hover, #
 #b64{
 	display:none;
 }
+
+#broj-kartice-lozinka{
+	display:none;
+}
 /*----------------------------------------------*/
 
 /*admin pocetna*/
+#admin-pocetna{
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.admin-pocetna-podaci{
+	width: fit-content;
+	background-color:rgba(68, 75, 83, 0.4);
+	border-radius: 10px;
+	margin:auto;
+	padding: 10px;
+	margin-bottom: 50px;
+}
+
+.admin-pocetna-podaci h2{
+	color:white;
+	margin:10px;
+	font-family:georgia;
+	text-align: center;
+}
+
+.admin-pocetna-podaci p{
+	color:white;
+	margin:10px;
+	padding-left:10px;
+	font-family:georgia;
+	font-size:22px;
+}
 
 /*----------------------------------------------*/

@@ -535,6 +535,9 @@ function kreirajKarticu(){
         if(xhr.responseText!=0){
           console.log(xhr.responseText);
           console.log(lozinka);
+          document.getElementById('broj-kartice-lozinka').style.display = 'block';
+          document.getElementById('broj-kartice').innerText="Broj kartice: "+xhr.responseText;
+          document.getElementById('lozinka').innerText="Lozinka: "+lozinka;
         }else{
           console.log("greska");
           console.log(xhr.responseText);
@@ -574,3 +577,35 @@ function getNovaLozinka(){
 }
 /*----------------------------------------------*/
 
+/*admin pocetna */
+
+var adminPocetna = document.getElementById('admin-pocetna');
+if(adminPocetna){
+  var brBg = document.getElementById('brBg').innerText;
+  var brNebg = document.getElementById('brNeBg').innerText;
+  var brBudzet = document.getElementById('brBudzet').innerText;
+  var brNeBudzet = document.getElementById('brNeBudzet').innerText;
+  
+  new Morris.bar({
+    element : 'bg-bar-chart',
+    data: [
+      {bg:'Beogradska', broj: brBg},
+      {bg:'Ne beogradska', broj: brNebg}
+    ],
+    xkey: 'bg',
+    ykeys: ['broj'] 
+  });
+
+  new Morris.bar({
+    element : 'budzet-bar-chart',
+    data: [
+      {budzet:'Budžetska', broj: brBudzet},
+      {nebudzet:'Ne budžetska', broj: brNeBudzet}
+    ],
+    xkey: 'budzet',
+    ykeys: ['broj'] 
+  });
+} 
+
+
+/*----------------------------------------------*/
